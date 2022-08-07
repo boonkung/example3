@@ -3,8 +3,6 @@ import 'package:example3/screen/about_screen.dart';
 import 'package:example3/screen/contact_screen.dart';
 import 'package:example3/screen/news_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,19 +22,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Menu> _menu = [
     Menu(
-      icon: Icon(Icons.newspaper),
+      icon: const Icon(Icons.newspaper),
       title: "News",
-      screen: NewsScreen(),
+      screen: const NewsScreen(),
     ),
     Menu(
-      icon: Icon(Icons.perm_contact_calendar),
+      icon: const Icon(Icons.perm_contact_calendar),
       title: "Contact me",
-      screen: ContactScreen(),
+      screen: const ContactScreen(),
     ),
     Menu(
-      icon: Icon(Icons.account_box_outlined),
+      icon: const Icon(Icons.account_box_outlined),
       title: "About me",
-      screen: AboutScreen(),
+      screen: const AboutScreen(),
     ),
   ];
 
@@ -48,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _menu[_currentIndex].title,
         ),
       ),
+      body: _menu[_currentIndex].screen,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: onIndexChanged,
