@@ -14,7 +14,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Menu> _menu = [
+  int _currentIndex = 0;
+
+  void onIndexChanged(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  final List<Menu> _menu = [
     Menu(
       icon: Icon(Icons.newspaper),
       title: "News",
@@ -22,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     Menu(
       icon: Icon(Icons.perm_contact_calendar),
-      title: "Contact",
+      title: "Contact me",
       screen: ContactScreen(),
     ),
     Menu(
@@ -36,7 +44,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomeScreen"),
+        title: Text(
+          _menu[_currentIndex].title,
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: onIndexChanged,
+        items: _menu
+            .map((e) => BottomNavigationBarItem(
+                  icon: e.icon,
+                  label: e.title,
+                ))
+            .toList(),
       ),
     );
   }
